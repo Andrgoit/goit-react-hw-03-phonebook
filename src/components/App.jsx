@@ -4,6 +4,8 @@ import Form from './Form/Form';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
 
+const KEY = 'contacts';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -14,6 +16,24 @@ export class App extends Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    try {
+      const contactsBook = JSON.parse(localStorage.getItem(KEY));
+      // console.log(contactsBook);
+      if (contactsBook !== null) {
+        this.setState({ contacts: contactsBook });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(KEY, JSON.stringify(this.state.contacts));
+    }
+  }
 
   formSubmitHandler = data => {
     // console.log('18-this.state',this.state);

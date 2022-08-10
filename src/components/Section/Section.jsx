@@ -1,23 +1,17 @@
-import styled from "styled-components";
 import PropTypes from 'prop-types';
+import { StyledSection, StyledTitle } from 'components/Section/Section.styled';
 
-const Section = ({title, children})=>{
-    return (
-        <StyledSection>
-            <StyledTitle>{title}</StyledTitle>
-            { children}
-        </StyledSection>
-    )
-}
+const Section = ({ title, children }) => {
+  return (
+    <StyledSection>
+      <StyledTitle>{title}</StyledTitle>
+      {children}
+    </StyledSection>
+  );
+};
 
-export default Section
-
-const StyledSection = styled.section`
-width:500px`
-
-const StyledTitle = styled.h2`
-`
+export default Section;
 
 Section.propTypes = {
-    title:PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+};
